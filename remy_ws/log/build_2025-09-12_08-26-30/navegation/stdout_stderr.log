@@ -1,0 +1,66 @@
+running egg_info
+creating ../../build/navegation/navegation.egg-info
+writing ../../build/navegation/navegation.egg-info/PKG-INFO
+writing dependency_links to ../../build/navegation/navegation.egg-info/dependency_links.txt
+writing entry points to ../../build/navegation/navegation.egg-info/entry_points.txt
+writing requirements to ../../build/navegation/navegation.egg-info/requires.txt
+writing top-level names to ../../build/navegation/navegation.egg-info/top_level.txt
+writing manifest file '../../build/navegation/navegation.egg-info/SOURCES.txt'
+reading manifest file '../../build/navegation/navegation.egg-info/SOURCES.txt'
+writing manifest file '../../build/navegation/navegation.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/chocolate/SEMEAR/remy/remy_ws/build/navegation/build
+creating /home/chocolate/SEMEAR/remy/remy_ws/build/navegation/build/lib
+creating /home/chocolate/SEMEAR/remy/remy_ws/build/navegation/build/lib/navegation
+copying navegation/joystick_reader.py -> /home/chocolate/SEMEAR/remy/remy_ws/build/navegation/build/lib/navegation
+copying navegation/__init__.py -> /home/chocolate/SEMEAR/remy/remy_ws/build/navegation/build/lib/navegation
+copying navegation/laser_to_pointcloud.py -> /home/chocolate/SEMEAR/remy/remy_ws/build/navegation/build/lib/navegation
+copying navegation/serial_controller.py -> /home/chocolate/SEMEAR/remy/remy_ws/build/navegation/build/lib/navegation
+copying navegation/odom_pub.py -> /home/chocolate/SEMEAR/remy/remy_ws/build/navegation/build/lib/navegation
+copying navegation/ps4_teleop_node.py -> /home/chocolate/SEMEAR/remy/remy_ws/build/navegation/build/lib/navegation
+running install
+running install_lib
+creating /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/lib/python3.12/site-packages/navegation
+copying /home/chocolate/SEMEAR/remy/remy_ws/build/navegation/build/lib/navegation/joystick_reader.py -> /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/lib/python3.12/site-packages/navegation
+copying /home/chocolate/SEMEAR/remy/remy_ws/build/navegation/build/lib/navegation/__init__.py -> /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/lib/python3.12/site-packages/navegation
+copying /home/chocolate/SEMEAR/remy/remy_ws/build/navegation/build/lib/navegation/laser_to_pointcloud.py -> /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/lib/python3.12/site-packages/navegation
+copying /home/chocolate/SEMEAR/remy/remy_ws/build/navegation/build/lib/navegation/serial_controller.py -> /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/lib/python3.12/site-packages/navegation
+copying /home/chocolate/SEMEAR/remy/remy_ws/build/navegation/build/lib/navegation/odom_pub.py -> /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/lib/python3.12/site-packages/navegation
+copying /home/chocolate/SEMEAR/remy/remy_ws/build/navegation/build/lib/navegation/ps4_teleop_node.py -> /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/lib/python3.12/site-packages/navegation
+byte-compiling /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/lib/python3.12/site-packages/navegation/joystick_reader.py to joystick_reader.cpython-312.pyc
+byte-compiling /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/lib/python3.12/site-packages/navegation/__init__.py to __init__.cpython-312.pyc
+byte-compiling /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/lib/python3.12/site-packages/navegation/laser_to_pointcloud.py to laser_to_pointcloud.cpython-312.pyc
+byte-compiling /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/lib/python3.12/site-packages/navegation/serial_controller.py to serial_controller.cpython-312.pyc
+byte-compiling /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/lib/python3.12/site-packages/navegation/odom_pub.py to odom_pub.cpython-312.pyc
+byte-compiling /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/lib/python3.12/site-packages/navegation/ps4_teleop_node.py to ps4_teleop_node.cpython-312.pyc
+running install_data
+creating /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/share/ament_index
+creating /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/share/ament_index/resource_index
+creating /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/share/ament_index/resource_index/packages
+copying resource/navegation -> /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/share/ament_index/resource_index/packages
+copying package.xml -> /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/share/navegation
+creating /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/share/navegation/launch
+copying launch/localization_launch.py -> /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/share/navegation/launch
+copying launch/ekf_launch.py -> /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/share/navegation/launch
+creating /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/share/navegation/config
+copying config/ekf_filter_node.yaml -> /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/share/navegation/config
+copying config/ekf_config.yaml -> /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/share/navegation/config
+copying config/slam_params.yaml -> /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/share/navegation/config
+copying config/ps4_teleop.yaml -> /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/share/navegation/config
+creating /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/share/navegation/maps
+copying maps/meu_mapa.yaml -> /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/share/navegation/maps
+copying maps/simulacao.pgm -> /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/share/navegation/maps
+copying maps/simulacao.yaml -> /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/share/navegation/maps
+copying maps/mapa_real.pgm -> /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/share/navegation/maps
+copying maps/mapa_real.yaml -> /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/share/navegation/maps
+copying maps/meu_mapa.pgm -> /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/share/navegation/maps
+running install_egg_info
+Copying ../../build/navegation/navegation.egg-info to /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/lib/python3.12/site-packages/navegation-0.0.0-py3.12.egg-info
+running install_scripts
+Installing joystick_reader script to /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/lib/navegation
+Installing laser_to_pointcloud script to /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/lib/navegation
+Installing odom_pub script to /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/lib/navegation
+Installing ps4_teleop_node script to /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/lib/navegation
+Installing serial_controller script to /home/chocolate/SEMEAR/remy/remy_ws/install/navegation/lib/navegation
+writing list of installed files to '/home/chocolate/SEMEAR/remy/remy_ws/build/navegation/install.log'
