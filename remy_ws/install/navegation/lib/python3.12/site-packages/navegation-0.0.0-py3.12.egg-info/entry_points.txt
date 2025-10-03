@@ -1,6 +1,0 @@
-[console_scripts]
-joystick_reader = navegation.joystick_reader:main
-laser_to_pointcloud = navegation.laser_to_pointcloud:main
-odom_pub = navegation.odom_pub:main
-ps4_teleop_node = navegation.ps4_teleop_node:main
-serial_controller = navegation.serial_controller:main

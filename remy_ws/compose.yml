@@ -1,0 +1,14 @@
+services:
+  remy_docker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: remy_docker
+    network_mode: "host"
+    environment:
+      - DISPLAY=${DISPLAY}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ./src:/dev_ws/src
+    stdin_open: true
+    tty: true
