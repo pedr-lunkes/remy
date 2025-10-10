@@ -1,3 +1,5 @@
 remy_ws/build/
 remy_ws/install/
 remy_ws/log/
+
+.vscode/
