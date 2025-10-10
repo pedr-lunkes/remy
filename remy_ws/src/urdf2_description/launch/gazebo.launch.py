@@ -21,14 +21,18 @@ def generate_launch_description():
         executable='robot_state_publisher',
         name='robot_state_publisher',
         parameters=[
-            {'robot_description': robot_urdf}
+            {'robot_description': robot_urdf},
+            {'publish_frequency': 20.0},
+            {'use_sim_time': True}
+
         ]
     )
 
     joint_state_publisher_node = Node(
         package='joint_state_publisher',
         executable='joint_state_publisher',
-        name='joint_state_publisher'
+        name='joint_state_publisher',
+        parameters=[{'rate': 20.0}, {'use_sim_time': True}]
     )
 
     gazebo_server = IncludeLaunchDescription(
@@ -40,7 +44,7 @@ def generate_launch_description():
             ])
         ]),
         launch_arguments={
-            'pause': 'true'
+            'pause': 'false'
         }.items()
     )
 
@@ -63,6 +67,20 @@ def generate_launch_description():
         ],
         output='screen'
     )
+
+    urdf_spawn_node = Node(
+    package='gazebo_ros',
+    executable='spawn_entity.py',
+    arguments=[
+        '-entity', 'urdf2',
+        '-topic', 'robot_description',
+        '-x', '0', '-y', '0', '-z', '0.05',
+        '-Y', '1.5708'  # Corrige a rotação para alinhar o eixo X
+    ],
+    output='screen'
+)
+
+
 
     return LaunchDescription([
         robot_state_publisher_node,
