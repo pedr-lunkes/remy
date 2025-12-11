@@ -13,7 +13,7 @@ setup(
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name + '/launch', glob('launch/*.py')),
         ('share/' + package_name + '/config', glob('config/*.yaml')),
-        ('share/' + package_name + '/maps', glob('maps/*')),
+        ('share/' + package_name + '/maps', glob('maps/*.yaml') + glob('maps/*.pgm') + glob('maps/*.png')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -28,6 +28,7 @@ setup(
                         'joystick_reader = navegation.joystick_reader:main',
                         'serial_controller = navegation.serial_controller:main',
                         'odom_pub = navegation.odom_pub:main',
+                        'pid_converter = navegation.pid_converter:main',
             ],
     },
 )

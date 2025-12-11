@@ -26,8 +26,8 @@ class SerialController(Node):
             return
 
         self.subscription = self.create_subscription(
-            Twist,
-            '/cmd_vel',
+            Float32MultiArray,
+            '/motor_commands',
             self.listener_callback,
             10
         )
@@ -35,15 +35,17 @@ class SerialController(Node):
         self.timer_pub = self.create_timer(0.01, self.ler_serial) #100vezes/seg
 
     def listener_callback(self, msg):
-        linear_x = msg.linear.x
-        angular_z = msg.angular.z
-
-        message = f"{linear_x} {angular_z}\n"
-        try:
-            self.ser.write(message.encode('utf-8'))
-            self.get_logger().info(f"Sent to serial: {message.strip()}")
-        except serial.SerialException as e:
-            self.get_logger().error(f"Serial write error: {e}")
+        # O nó C++ envia [pid_esquerdo, pid_direito]
+        if len(msg.data) >= 2:
+            pid_l = msg.data[0]
+            pid_r = msg.data[1]
+            
+            message = f"{pid_l:.2f} {pid_r:.2f}\n"
+            
+            try:
+                self.ser.write(message.encode('utf-8'))
+            except serial.SerialException as e:
+                self.get_logger().error(f"Serial write error: {e}")
 
     def ler_serial(self):
         if self.ser.in_waiting > 0:  # Check if there is data in the buffer
