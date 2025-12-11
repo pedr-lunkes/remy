@@ -12,6 +12,7 @@
   <mu2>0.2</mu2>
   <self_collide>true</self_collide>
   <gravity>true</gravity>
+  <laserRetro>0.0</laserRetro>
 </gazebo>
 
 <gazebo reference="limb2_v1_1">
@@ -19,6 +20,7 @@
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <self_collide>true</self_collide>
+  <laserRetro>0.0</laserRetro>
 </gazebo>
 
 <gazebo reference="limb3_v1_1">
@@ -26,6 +28,7 @@
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <self_collide>true</self_collide>
+  <laserRetro>0.0</laserRetro>
 </gazebo>
 
 <gazebo reference="limb1_v1_1">
@@ -33,6 +36,7 @@
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <self_collide>true</self_collide>
+  <laserRetro>0.0</laserRetro>
 </gazebo>
 
 <gazebo reference="limb1_v1__1__1">
@@ -40,6 +44,7 @@
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <self_collide>true</self_collide>
+  <laserRetro>0.0</laserRetro>
 </gazebo>
 
 <gazebo reference="limb4_v1_1">
@@ -47,6 +52,7 @@
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <self_collide>true</self_collide>
+  <laserRetro>0.0</laserRetro>
 </gazebo>
 
 <gazebo reference="limb4_v1__1__1">
@@ -54,6 +60,7 @@
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <self_collide>true</self_collide>
+  <laserRetro>0.0</laserRetro>
 </gazebo>
 
 <gazebo reference="limb4_v1__2__1">
@@ -61,6 +68,7 @@
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <self_collide>true</self_collide>
+  <laserRetro>0.0</laserRetro>
 </gazebo>
 
 <gazebo reference="limb4_v1__3__1">
@@ -68,6 +76,7 @@
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <self_collide>true</self_collide>
+  <laserRetro>0.0</laserRetro>
 </gazebo>
 
 <gazebo reference="limb5_v1_1">
@@ -75,6 +84,7 @@
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <self_collide>true</self_collide>
+  <laserRetro>0.0</laserRetro>
 </gazebo>
 
 <gazebo reference="limb5_v1__1__1">
@@ -82,6 +92,7 @@
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <self_collide>true</self_collide>
+  <laserRetro>0.0</laserRetro>
 </gazebo>
 
 <gazebo reference="limb5_v1__2__1">
@@ -89,6 +100,7 @@
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <self_collide>true</self_collide>
+  <laserRetro>0.0</laserRetro>
 </gazebo>
 
 <gazebo reference="limb5_v1__3__1">
@@ -96,76 +108,57 @@
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <self_collide>true</self_collide>
+  <laserRetro>0.0</laserRetro>
 </gazebo>
 
 
-<gazebo>
-  <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+<!--Differential Drive Controller for 2-wheel-robot-->
+     <gazebo>
+        <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so">
 
-    <!-- Plugin update rate in Hz -->
-    <update_rate>100</update_rate>
-
-    <!-- Name of left joint, defaults to `left_joint` -->
-    <left_joint>rev1</left_joint>
-
-    <!-- Name of right joint, defaults to `right_joint` -->
-    <right_joint>rev2</right_joint>
-
-    <!-- The distance from the center of one wheel to the other, in meters, defaults to 0.34 m -->
-    <wheel_separation>0.5</wheel_separation>
-
-    <!-- Diameter of the wheels, in meters, defaults to 0.15 m -->
-    <wheel_diameter>0.16</wheel_diameter>
-
-    <!-- Wheel acceleration, in rad/s^2, defaults to 0.0 rad/s^2 -->
-    <wheel_acceleration>1.0</wheel_acceleration>
-
-    <!-- Maximum torque which the wheels can produce, in Nm, defaults to 5 Nm -->
-    <wheel_torque>50</wheel_torque>
-
-    <!-- Topic to receive geometry_msgs/Twist message commands, defaults to `cmd_vel` -->
-    <command_topic>cmd_vel</command_topic>
-
-    <!-- Topic to publish nav_msgs/Odometry messages, defaults to `odom` -->
-    <odometry_topic>odom</odometry_topic>
-
-    <!-- Odometry frame, defaults to `odom` -->
-    <odometry_frame>odom</odometry_frame>
-
-    <!-- Robot frame to calculate odometry from, defaults to `base_footprint` -->
-    <robot_base_frame>base_link</robot_base_frame>
-
-    <!-- Odometry source, 0 for ENCODER, 1 for WORLD, defaults to WORLD -->
-    <odometry_source>1</odometry_source>
-
-    <!-- Set to true to publish transforms for the wheel links, defaults to false -->
-    <publish_wheel_tf>false</publish_wheel_tf>
-
-    <!-- Set to true to publish transforms for the odometry, defaults to true -->
-    <publish_odom>true</publish_odom>
-
-    <!-- Set to true to publish sensor_msgs/JointState on /joint_states for the wheel joints, defaults to false -->
-    <publish_wheel_joint_state>true</publish_wheel_joint_state>
-
-    <!-- Set to true to swap right and left wheels, defaults to true -->
-    <legacyMode>false</legacyMode>
-  </plugin>
-</gazebo>
+            <!-- Wheel Information -->
+            <left_joint>rev1</left_joint>
+            <right_joint>rev2</right_joint>
+            <wheel_separation>0.5</wheel_separation>
+            <wheel_diameter>0.16</wheel_diameter>
 
 
- <!-- hokuyo -->
-<gazebo reference="limb2_v1_1">
+            <update_rate>50</update_rate>
+
+
+            <!-- Limits -->
+            <max_wheel_torque>200</max_wheel_torque>
+            <max_wheel_acceleration>10.0</max_wheel_acceleration>
+
+            
+            <!-- Output -->
+            <odometry_frame>odom</odometry_frame>
+            <robot_base_frame>base_link</robot_base_frame>
+
+            <publish_odom>true</publish_odom>
+            <publish_odom_tf>true</publish_odom_tf> 
+            <publish_tf>true</publish_tf>
+            <publish_wheel_tf>true</publish_wheel_tf>
+
+
+
+        </plugin>
+    </gazebo>  
+
+
+<!-- hokuyo -->
+<gazebo reference="laser_link">
   <sensor type="ray" name="head_hokuyo_sensor">
-    
+    <alwaysOn>true</alwaysOn>
     <visualize>true</visualize>
-    <update_rate>10</update_rate>
+    <update_rate>15</update_rate>
     <ray>
       <scan>
         <horizontal>
-          <samples>720</samples>
+          <samples>341</samples>
           <resolution>1</resolution>
-          <min_angle>-3.14</min_angle>
-          <max_angle>3.14</max_angle>
+          <min_angle>-1.57</min_angle>
+          <max_angle>1.57</max_angle>
         </horizontal>
       </scan>
       <range>
@@ -185,11 +178,10 @@
     </ray>
     <plugin name="scan" filename="libgazebo_ros_ray_sensor.so">
       <ros>
-        <remapping>~/out:=scan</remapping>
-      </ros>   
-      <output_type>sensor_msgs/LaserScan</output_type>   
-      <topic_name>/scan</topic_name>
-      <frame_name>limb2_v1_1</frame_name>
+        <remapping>~/out:=/scan</remapping>
+      </ros>
+      <output_type>sensor_msgs/LaserScan</output_type>
+      <frameName>laser_link</frameName>
     </plugin>
   </sensor>
 </gazebo>
@@ -198,7 +190,8 @@
 <!-- camera -->
 <gazebo reference="limb3_v1_1">
   <sensor type="camera" name="camera1">
-    <update_rate>30.0</update_rate>
+  <visualize>false</visualize>
+    <update_rate>10</update_rate>
     <camera name="head">
       <horizontal_fov>1.3962634</horizontal_fov>
       <image>

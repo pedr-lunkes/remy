@@ -27,7 +27,7 @@
   </collision>
 </link>
 
-<link name="limb2_v1_1">
+<link name="laser_link">
   <inertial>
     <origin xyz="-0.02149999999999923 -0.023058640719597706 0.016872379763677364" rpy="0 0 0"/>
     <mass value="0.8145811794632783"/>
@@ -68,24 +68,6 @@
     </geometry>
   </collision>s
 </link>
-
-
-
-<link name="realsense_link">
-  <visual>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-    <geometry>
-      <box size="0.05 0.05 0.02"/>
-    </geometry>
-    <material name="black"/>
-  </visual>
-</link>
-
-<joint name="realsense_joint" type="fixed">
-  <origin xyz="0 0 0" rpy="0 0 0"/>
-  <parent link="limb3_v1_1"/>
-  <child link="realsense_link"/>
-</joint>
 
 
 
@@ -301,14 +283,14 @@
 </link>
 
 
-<joint name="rig2" type="fixed">
-  <origin xyz="0.0215 -0.190948 0.125363" rpy="0 0 0"/>
+<joint name="laser_joint" type="fixed">
+  <origin xyz="0.0215 -0.190948 0.125363" rpy="0 0 -1.5708"/>
   <parent link="base_link"/>
-  <child link="limb2_v1_1"/>
+  <child link="laser_link"/>
 </joint>
 
 <joint name="rig3" type="fixed">
-  <origin xyz="0.0325 0.0265 1.500001" rpy="0 0 0"/>
+  <origin xyz="0.0325 0.0265 1.500001" rpy="0 0 -1.5708"/>
   <parent link="base_link"/>
   <child link="limb3_v1_1"/>
 </joint>
@@ -317,14 +299,14 @@
   <origin xyz="0.2235 0.0 0.074" rpy="0 0 0"/>
   <parent link="base_link"/>
   <child link="limb1_v1_1"/>
-  <axis xyz="-1.0 -0.0 -0.0"/>
+  <axis xyz="1 0 0" rpy="0 0 0"/> <!-- roda direita gira no eixo Y -->
 </joint>
 
 <joint name="rev2" type="continuous">
   <origin xyz="-0.2245 0.0 0.074" rpy="0 0 0"/>
   <parent link="base_link"/>
   <child link="limb1_v1__1__1"/>
-  <axis xyz="1.0 0.0 -0.0"/>
+  <axis xyz="1 0 0" rpy="0 0 0"/> <!-- roda esquerda gira no eixo Y -->
 </joint>
 
 <joint name="rev11" type="continuous">
