@@ -1,0 +1,24 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 50
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    diff_drive_controller:
+      type: diff_drive_controller/DiffDriveController
+
+diff_drive_controller:
+  ros__parameters:
+    left_wheel_names: ["rev1"]
+    right_wheel_names: ["rev2"]
+
+    wheel_separation: 0.50
+    wheel_radius: 0.08
+
+    base_frame_id: base_link
+    odom_frame_id: odom
+    enable_odom_tf: true
+
+    use_stamped_vel: true   # 🔥 ISSO É O FIX
+

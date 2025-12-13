@@ -24,7 +24,6 @@ def generate_launch_description():
             {'robot_description': robot_urdf},
             {'publish_frequency': 20.0},
             {'use_sim_time': True}
-
         ]
     )
 
@@ -43,9 +42,7 @@ def generate_launch_description():
                 'gzserver.launch.py'
             ])
         ]),
-        launch_arguments={
-            'pause': 'false'
-        }.items()
+        launch_arguments={'pause': 'false'}.items()
     )
 
     gazebo_client = IncludeLaunchDescription(
@@ -63,24 +60,46 @@ def generate_launch_description():
         executable='spawn_entity.py',
         arguments=[
             '-entity', 'urdf2',
-            '-topic', 'robot_description'
+            '-topic', 'robot_description',
+            '-x', '0', '-y', '0', '-z', '0.05',
+            '-Y', '1.5708'
         ],
         output='screen'
     )
 
-    urdf_spawn_node = Node(
-    package='gazebo_ros',
-    executable='spawn_entity.py',
-    arguments=[
-        '-entity', 'urdf2',
-        '-topic', 'robot_description',
-        '-x', '0', '-y', '0', '-z', '0.05',
-        '-Y', '1.5708'  # Corrige a rotação para alinhar o eixo X
-    ],
-    output='screen'
-)
+    # ===================================================================
+    #                   ADIÇÃO PARA RODAR O ROBÔ REAL
+    # ===================================================================
 
+    # YAML do diff drive no my_bot_hardware
+    diffdrive_yaml = os.path.join(
+        get_package_share_directory('my_bot_hardware'),
+        'config',
+        'diff_drive_controller.yaml'
+    )
 
+    ros2_control_node = Node(
+        package='controller_manager',
+        executable='ros2_control_node',
+        parameters=[{'robot_description': robot_urdf}, diffdrive_yaml],
+        output='screen'
+    )
+
+    js_broadcaster_spawner = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['joint_state_broadcaster'],
+        output='screen'
+    )
+
+    diffdrive_spawner = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['diff_drive_controller'],
+        output='screen'
+    )
+
+    # ===================================================================
 
     return LaunchDescription([
         robot_state_publisher_node,
@@ -88,4 +107,9 @@ def generate_launch_description():
         gazebo_server,
         gazebo_client,
         urdf_spawn_node,
+
+        # ADICIONADO PARA ROBÔ REAL:
+        ros2_control_node,
+        js_broadcaster_spawner,
+        diffdrive_spawner,
     ])

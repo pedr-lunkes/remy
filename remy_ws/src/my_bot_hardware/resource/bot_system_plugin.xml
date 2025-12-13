@@ -1,0 +1,8 @@
+<library path="my_bot_hardware">
+  <class
+    name="my_bot_hardware/BotSystem"
+    type="my_bot_hardware::BotSystem"
+    base_class_type="hardware_interface::SystemInterface">
+    <description>Hardware interface for my differential drive robot using ESP32 over serial</description>
+  </class>
+</library>
