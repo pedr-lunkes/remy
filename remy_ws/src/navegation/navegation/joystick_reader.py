@@ -10,8 +10,8 @@ class JoystickReader(Node):
         super().__init__('joystick_reader')
         self.publisher = self.create_publisher(Twist, '/cmd_vel', 10)
         self.device_path = '/dev/input/js0'
-        self.max_value = 255
-        self.deadzone = 10000
+        self.max_value = 2
+        self.deadzone = 1000
 
         self.axes = {
             1: 0,  # Eixo vertical esquerdo

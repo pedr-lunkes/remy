@@ -6,6 +6,14 @@
 <xacro:include filename="$(find urdf2_description)/urdf/urdf2.gazebo" />
 
 
+<link name="base_footprint"/>
+
+<joint name="base_joint" type="fixed">
+  <parent link="base_footprint"/>
+  <child link="base_link"/>
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+</joint>
+
 <link name="base_link">
   <inertial>
     <origin xyz="-4.812698831464578e-06 -0.005412827793001517 0.4978610665312513" rpy="0 0 0"/>
@@ -27,7 +35,7 @@
   </collision>
 </link>
 
-<link name="laser_link">
+<link name="laser">
   <inertial>
     <origin xyz="-0.02149999999999923 -0.023058640719597706 0.016872379763677364" rpy="0 0 0"/>
     <mass value="0.8145811794632783"/>
@@ -286,7 +294,7 @@
 <joint name="laser_joint" type="fixed">
   <origin xyz="0.0215 -0.190948 0.125363" rpy="0 0 -1.5708"/>
   <parent link="base_link"/>
-  <child link="laser_link"/>
+  <child link="laser"/>
 </joint>
 
 <joint name="rig3" type="fixed">

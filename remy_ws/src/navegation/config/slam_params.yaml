@@ -10,16 +10,14 @@ slam_toolbox:
     ceres_loss_function: None
 
     # ROS Parameters
-    use_sim_time: true          # se estiver no Gazebo
+    use_sim_time: false          # se estiver no Gazebo
     odom_frame: odom
     map_frame: map
     base_frame: base_link
     scan_topic: /scan
     use_map_saver: true
     mode: mapping #localization
-    
-
-
+  
 
     transform_tolerance: 0.5
     queue_size: 50    

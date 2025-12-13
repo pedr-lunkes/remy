@@ -10,9 +10,9 @@ class PidController(Node):
         super().__init__('pid_controller')
 
         # --- Parâmetros PID ---
-        self.declare_parameter('kp', 0.15)
-        self.declare_parameter('ki', 0.7)
-        self.declare_parameter('kd', 0.001)
+        self.declare_parameter('kp', 0.2)
+        self.declare_parameter('ki', 0.11)
+        self.declare_parameter('kd', 0.0)
         
         # Limites de Saída (PWM) e Integral
         self.declare_parameter('pwm_min', 30.0)
@@ -22,6 +22,8 @@ class PidController(Node):
         # Geometria do Robô
         self.declare_parameter('wheel_separation', 0.50) # Distância entre rodas (m)
         self.declare_parameter('wheel_radius', 0.08)     # Raio da roda (m)
+
+        self.declare_parameter('cmd_vel_timeout', 0.5)
 
         # Estado dos Alvos (Target) e Feedback
         self.target_vel_l = 0.0
@@ -33,6 +35,8 @@ class PidController(Node):
         self.last_pos_l = 0.0
         self.last_pos_r = 0.0
         self.last_time_feedback = self.get_clock().now()
+
+        self.last_cmd_vel_time = time.time()
 
         # Variáveis do PID
         self.prev_err_l = 0.0
@@ -57,6 +61,8 @@ class PidController(Node):
 
     def cmd_vel_callback(self, msg):
         # Converte V linear (m/s) e W angular (rad/s) para velocidade das rodas (rad/s)
+        self.last_cmd_vel_time = time.time()
+
         sep = self.get_parameter('wheel_separation').value
         rad = self.get_parameter('wheel_radius').value
 
@@ -67,6 +73,9 @@ class PidController(Node):
         self.target_vel_l = (v - (w * sep / 2.0)) / rad
         self.target_vel_r = (v + (w * sep / 2.0)) / rad
 
+        # Debug: Log the target velocities for left and right wheels
+        self.get_logger().info(f"Target Velocities -> Left: {self.target_vel_l:.2f}, Right: {self.target_vel_r:.2f}")
+        
     def joint_state_callback(self, msg):
         # Tenta extrair as velocidades atuais publicadas pelo serial_controller
         # Espera nomes: "wheel_left_joint", "wheel_right_joint"
@@ -117,6 +126,16 @@ class PidController(Node):
         output = p_term + integral + d_term
         
         return output, error, integral
+    
+    def check_cmd_vel_timeout(self):
+        # Verifica se passou do tempo limite
+        timeout = self.get_parameter('cmd_vel_timeout').value
+        if (time.time() - self.last_cmd_vel_time) > timeout:
+            # Se timeout, ZERA os alvos e reseta integrais para evitar solavancos
+            self.target_vel_l = 0.0
+            self.target_vel_r = 0.0
+            self.integral_l = 0.0
+            self.integral_r = 0.0
 
     def control_loop(self):
         now = time.perf_counter()
@@ -126,6 +145,14 @@ class PidController(Node):
         # Evita divisão por zero ou saltos grandes
         if dt <= 0 or dt > 0.5:
             return
+        
+        self.check_cmd_vel_timeout()
+
+        if abs(self.target_vel_l) < 0.001 and abs(self.target_vel_r) < 0.001:
+            self.integral_l = 0.0
+            self.integral_r = 0.0
+            self.prev_err_l = 0.0
+            self.prev_err_r = 0.0
 
         # PID Esquerda
         out_l, self.prev_err_l, self.integral_l = self.calculate_pid(

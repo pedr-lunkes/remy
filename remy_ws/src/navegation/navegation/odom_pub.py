@@ -25,14 +25,14 @@ class Odom_pub(Node):
 
         self.get_logger().info(f'{self.get_parameter("use_sim_time").value}')
 
-        self.declare_parameter("wheel_radius", 0.035)
-        self.declare_parameter("wheel_separation", 0.386)
+        self.declare_parameter("wheel_radius", 0.08)
+        self.declare_parameter("wheel_separation", 0.50)
 
         self.wheel_radius_ = self.get_parameter("wheel_radius").get_parameter_value().double_value
         self.wheel_separation_ = self.get_parameter("wheel_separation").get_parameter_value().double_value
 
-        self.get_logger().info("Using wheel radius %d" % self.wheel_radius_)
-        self.get_logger().info("Using wheel separation %d" % self.wheel_separation_)
+        self.get_logger().info("Using wheel radius %f" % self.wheel_radius_)
+        self.get_logger().info("Using wheel separation %f" % self.wheel_separation_)
 
         self.left_wheel_prev_pos_ = 0.0
         self.right_wheel_prev_pos_ = 0.0
